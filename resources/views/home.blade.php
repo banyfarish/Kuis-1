@@ -1,118 +1,122 @@
-@extends('layout.master')
-  @section('content')
-      <!-- Page Content -->
-  <div class="container">
-  <br><br><br>
-<div class="row">
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hielo by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
 
-  <!-- Blog Entries Column -->
-  
-  
-  <div class="col-md-8">
-  <div class="card body">
-        @if (session('status'))
-            <div class="alern alern-success" role="alert">
-                {{ session('status')}}
-            </div>
-        @endif
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="#">Hielo <span>by TEMPLATED</span></a></div>
+                <a href="#menu">Menu</a>
+            </header>
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/">Home</a></li>
+					<li><a href="#">Generic</a></li>
+					<li><a href="#">Elements</a></li>
+				</ul>
+			</nav>
 
-        you are logged in!
-    </div>
-    
-    <h1 class="my-4">Karakter Pemain Tim Shohoku</h1>
+		<!-- Banner -->
+			<section class="banner full">
+				<article>
+					<img src="images/slide01.jpg" alt="" />
+					<div class="inner">
+						<header>
+							<p>LARAVEL <a href="https://templated.co">NEWS</a></p>
+							<h2>GENERAL</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide02.jpg" alt="" />
+					<div class="inner">
+						<header>
+							<h2>SPORT</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide03.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<h2>TEKNOLOGY</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide04.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<h2>SECIENCE</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="images/slide05.jpg"  alt="" />
+					<div class="inner">
+						<header>
+							<h2>INTERTAINMENT</h2>
+						</header>
+					</div>
+				</article>
+			</section>
 
-    @foreach($articlesAll as $art)
-    <!-- Blog Post -->
-    <div class="card mb-4">
-    <img class="card-img-top" src={{$art->featured_image}} width="750px" height="300px" alt="Card image cap">
-      <div class="card-body">
-        <h2 class="card-title">{{$art->title}}</h2>
-        <p class="card-text">{{ Str::limit($art->content, 100,'...') }}</p>
-        <a href="{{ '/articles/'.$art->id }}" class="btn btn-primary">Read More &rarr;</a>
-      </div>
-      <div class="card-footer text-muted">
-        Posted on January 1, 2020 by
-        <a href="#">Start Bootstrap</a>
-      </div>
-    </div>
-    @endforeach
+		<!-- One -->
+			<section id="one" class="wrapper style2">
+            <form class="size 20" action="/search">
+            @csrf
+            <input type="text" class="form-control" name="keyword">
+            <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+				<div class="box">
+					<div class="grid-style">
+                    @foreach($artikel as $a)
+						<div>
+							<div class="box">
+								<div class="image fit">
+									<img src="{{ $a->urlToImage}}">
+								</div>
+								<div class="content">
+									<header class="align-center">
+                                    <h3>{{ $a->title}}<h3>
+									</header>
+									<p>{{ $a->description}}<p>
+                                    <p>{{ $a->url}}<p>
+									<footer class="align-center">
+										<a href="#" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+                        @endforeach
 
-    <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
-      <li class="page-item">
-        <a class="page-link" href="#">&larr; Older</a>
-      </li>
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-    </ul>
+		<!-- Footer -->
+        <footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+            </footer>
 
-  </div>
+		<!-- Scripts -->
+            <script src="js/jquery.min.js"></script>
+			<script src="js/jquery.scrollex.min.js"></script>
+			<script src="js/skel.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
 
-  <!-- Sidebar Widgets Column -->
-  <div class="col-md-4">
-
-    <!-- Search Widget -->
-    <div class="card my-4">
-      <h5 class="card-header">Search</h5>
-      <div class="card-body">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-append">
-            <button class="btn btn-secondary" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Categories Widget -->
-    <div class="card my-4">
-      <h5 class="card-header">Categories</h5>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#">Kainan</a>
-              </li>
-              <li>
-                <a href="#">Shoyo</a>
-              </li>
-              <li>
-                <a href="#">Meihou</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-6">
-            <ul class="list-unstyled mb-0">
-              <li>
-                <a href="#">Ryounan</a>
-              </li>
-              <li>
-                <a href="#">Sannoh</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Side Widget -->
-    <div class="card my-4">
-      <h5 class="card-header">Slam Dunk</h5>
-      <div class="card-body">
-      The manga and anime series Slam Dunk features a cast of 
-      fictional characters created by Takehiko Inoue. The series 
-      takes place in Japan, with the main characters being high school 
-      basketball players from Kanagawa Prefecture.
-      </div>
-    </div>
-
-  </div>
-
-</div>
-<!-- /.row -->
-
-</div>
-<!-- /.container -->
-  @endsection
+	</body>
+</html>
